@@ -710,7 +710,7 @@ func (b *Remote) Operation(ctx context.Context, op *backend.Operation) (*backend
 				}
 			}
 
-			if r.Status == tfe.RunErrored {
+			if r.Status == tfe.RunCanceled || r.Status == tfe.RunErrored {
 				runningOp.Result = backend.OperationFailure
 			}
 		}
