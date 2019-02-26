@@ -622,7 +622,7 @@ func (b *Remote) Operation(ctx context.Context, op *backend.Operation) (*backend
 				runningOp.Err = b.cancel(cancelCtx, op, r)
 			}
 
-			if runningOp.Err == nil && r.Status == tfe.RunErrored {
+			if runningOp.Err == nil && (r.Status == tfe.RunCanceled || r.Status == tfe.RunErrored) {
 				runningOp.ExitCode = 1
 			}
 		}
